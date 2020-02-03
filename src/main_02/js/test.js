@@ -14,7 +14,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     var bar_width = 50;
     var svg = d3.select('svg')
         .attr('width', width + 50)
-        .attr('height', height + 100);
+        .attr('height', height + 50);
     var data = yield d3.csv('data.csv');
     var namekeys = d3.set(data, d => d.name).values();
     var xColor = d3.scaleOrdinal(d3.schemeCategory10)
@@ -25,7 +25,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         .domain(namekeys);
     var xAxis = d3.axisBottom(xScale);
     var yScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => Number(d.value)) + 100])
+        .domain([0, 1000])
         .range([height, 0]);
     var yAxis = d3.axisLeft(yScale);
     svg.append('g')
@@ -37,18 +37,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     function show(data) {
         var bars = svg.selectAll('rect')
             .data(data, d => d.name);
-        bars.enter()
-            .append('rect')
+        var texts = svg.selectAll('text')
+            .data(data, d => d.name);
+        bars.enter().append('rect')
             .attr('class', 'bar')
             .attr('x', d => xScale(d.name) + y_width)
             .attr('fill', d => xColor(d.sex))
             .attr('y', d => yScale(d.value))
             .attr('width', bar_width)
             .attr('height', d => yScale(0) - yScale(d.value));
-        bars.transition().duration(1000)
+        texts.enter()
+            .append('text')
+            .text(d => d.name)
+            .attr('font-size', 55)
+            .attr('x', d => xScale(d.name) + y_width)
+            .attr('y', d => yScale(d.value));
+        bars.attr('fill', 'red')
+            .transition().duration(1000)
             .attr('y', d => yScale(d.value))
             .attr('height', d => yScale(0) - yScale(d.value));
-        bars.exit().remove();
+        texts.exit().remove();
+        bars.exit()
+            .each(d => console.log(d))
+            .attr('fill', 'black')
+            .transition().duration(1000)
+            .attr('y', yScale(0))
+            .attr('height', 0)
+            .remove();
     }
     setTimeout(function () {
         show(data);
