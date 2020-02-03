@@ -10,29 +10,16 @@
         .attr('height', height + 50)
 
     var data = await d3.csv('data.csv')
-    var gp = d3.nest()
-        .key(d => d.sex)
-        .entries(data)
-
-    console.log(Array(gp.keys()))
-
-    gp.forEach(d => {
-        console.log(d)
-    })
-
-
     var namekeys = d3.set(data, d => d.name).values()
 
-
-
     var xColor = d3.scaleOrdinal(d3.schemeCategory10)
-        .domain(namekeys)
-
+        .domain( d3.set(data, d => d.sex).values())
+ 
 
     var xScale = d3.scaleBand()
         .rangeRound([0, width])
         // .paddingInner(0.5)
-        // .padding(1)
+        .padding(0.5)
         .domain(namekeys)
 
 
@@ -78,7 +65,7 @@
         show(data);
     }, 0);
 
-    // setTimeout(function () {
-    //     show(data.filter(d => d.sex == 'f'));
-    // }, 1000);
+    setTimeout(function () {
+        show(data.filter(d => d.sex == 'f'));
+    }, 1000);
 })()
