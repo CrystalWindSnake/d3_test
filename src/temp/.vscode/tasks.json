@@ -4,10 +4,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "watchify-temp",
+            "label": "watchify",
             "type": "shell",
             "command": "watchify",
-            "args": ["src/temp/js/test.js","-o","src/temp/js/main.js","-v"],
+            "args": ["js/test.js","-o","js/main.js","-v"],
             "isBackground": true,
           
         }

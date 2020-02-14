@@ -3,7 +3,7 @@ import * as d3Scale from "d3-scale";
 import * as d3Array from "d3-array";
 import * as d3Selection from "d3-selection";
 import * as d3Collection from "d3-collection";
-
+import "./helper/d3Ex"
 
 
 
@@ -84,10 +84,12 @@ export class ChartCreator {
             .call(axis)
         switch (axisType) {
             case AxisType.X:
-                res.attr('transform', `translate(${0},${this.height})`)
+                res.exSetTranslate(0,this.height)
+                // res.attr('transform', `translate(${0},${this.height})`)
                 break;
             case AxisType.Y:
-                res.attr('transform', `translate(${0},${0})`)
+                res.exSetTranslate(0,0)
+                // res.attr('transform', `translate(${0},${0})`)
                 break;
             default:
                 break;
@@ -110,28 +112,6 @@ export class ChartCreator {
 
    
 
-    public callCenterText(
-        selection: d3Selection.Selection<SVGGElement, unknown, HTMLElement, any>,
-        direction: Direction,
-        attr: string,
-        bandWidth: number, barWidth: number, scaleValue: number){
-
-        var offset = bandWidth / 2 - barWidth + barWidth / 2
-
-        switch (direction) {
-            case Direction.H:
-                selection.attr('dominant-baseline', 'middle')
-                break;
-            case Direction.V:
-                selection.attr('text-anchor', 'middle')
-                break;
-            default:
-                break;
-        }
-
-        selection.attr(attr, scaleValue + offset + barWidth / 2)
-
-    }
 }
 
 

@@ -1,18 +1,44 @@
-import { Selection as d3Selection } from "d3-selection";
-import * as d3sel  from "d3-selection";
 
-declare module  "d3-selection" {
-    interface Selection<GElement extends d3sel.BaseType, Datum, PElement extends d3sel.BaseType, PDatum> {
-        setCenterText():d3sel.Selection<GElement, Datum, PElement, PDatum>
-    }
-}
+// import  * as d3sel from "d3-selection";
+// import { Direction } from "./svg1";
+// import { Selection } from "d3-selection";
 
-Selection.prototype.setCenterText=
-    function<GElement extends d3sel.BaseType, 
-        Datum, 
-        PElement extends d3sel.BaseType, 
-        PDatum>
-        ():string{
-    return 'xxx'
-}
+
+
+
+// declare module  "d3-selection" {
+//     interface Selection<GElement extends d3.BaseType, Datum, PElement extends d3.BaseType, PDatum> {
+//         setCenterText(direction:Direction,
+//             attr:string,bandWidth:number,barWidth:number,
+//             scaleValueFunc:(any)=>number):d3TextSelection
+//     }
+// }
+
+
+
+// type d3TextSelection =  Selection<SVGTextElement, any, d3.BaseType, unknown>
+
+// d3sel.selection.prototype.setCenterText=function(
+//     this:d3TextSelection,
+//     direction:Direction,
+//     attr:string,bandWidth:number,barWidth:number,
+//     scaleValueFunc:(any)=>number){
+    
+//     var offset = bandWidth / 2 - barWidth + barWidth / 2
+
+//     switch (direction) {
+//         case Direction.H:
+//             this.attr('dominant-baseline', 'middle')
+//             break;
+//         case Direction.V:
+//             this.attr('text-anchor', 'middle')
+//             break;
+//         default:
+//             break;
+//     }
+
+//     this.attr(attr, d=> scaleValueFunc(d) + offset + barWidth / 2)
+//     return this
+// }
+
 

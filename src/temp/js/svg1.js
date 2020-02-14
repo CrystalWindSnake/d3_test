@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const d3Scale = require("d3-scale");
 const d3Array = require("d3-array");
 const d3Collection = require("d3-collection");
+require("./helper/d3Ex");
 var AxisType;
 (function (AxisType) {
     AxisType[AxisType["X"] = 0] = "X";
@@ -55,10 +56,10 @@ class ChartCreator {
             .call(axis);
         switch (axisType) {
             case AxisType.X:
-                res.attr('transform', `translate(${0},${this.height})`);
+                res.exSetTranslate(0, this.height);
                 break;
             case AxisType.Y:
-                res.attr('transform', `translate(${0},${0})`);
+                res.exSetTranslate(0, 0);
                 break;
             default:
                 break;
@@ -68,20 +69,6 @@ class ChartCreator {
     setCenterBar(bandWidth, barWidth, scaleValue) {
         var offset = bandWidth / 2 - barWidth + barWidth / 2;
         return scaleValue + offset;
-    }
-    callCenterText(selection, direction, attr, bandWidth, barWidth, scaleValue) {
-        var offset = bandWidth / 2 - barWidth + barWidth / 2;
-        switch (direction) {
-            case Direction.H:
-                selection.attr('dominant-baseline', 'middle');
-                break;
-            case Direction.V:
-                selection.attr('text-anchor', 'middle');
-                break;
-            default:
-                break;
-        }
-        selection.attr(attr, scaleValue + offset + barWidth / 2);
     }
 }
 exports.ChartCreator = ChartCreator;
