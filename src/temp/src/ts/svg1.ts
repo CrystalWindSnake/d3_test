@@ -1,8 +1,9 @@
-import * as d3Axis from "d3-axis";
-import * as d3Scale from "d3-scale";
-import * as d3Array from "d3-array";
-import * as d3Selection from "d3-selection";
-import * as d3Collection from "d3-collection";
+// import * as d3Axis from "d3-axis";
+// import * as d3Scale from "d3-scale";
+// import * as d3Array from "d3-array";
+// import * as d3Selection from "d3-selection";
+// import * as d3Collection from "d3-collection";
+import * as d3  from "d3";
 import "./helper/d3Ex"
 
 
@@ -19,11 +20,11 @@ export enum Direction {
 }
 
 export class ChartCreator {
-    svg: d3Selection.Selection<d3Selection.BaseType, unknown, HTMLElement, any>;
+    svg: d3.Selection<d3.BaseType, unknown, HTMLElement, any>;
     height: number;
     width: number;
 
-    constructor(svg: d3Selection.Selection<d3Selection.BaseType, unknown, HTMLElement, any>,
+    constructor(svg: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
         height: number,
         width: number) {
         this.svg = svg
@@ -34,9 +35,9 @@ export class ChartCreator {
     /**
      * Create
      */
-    public createScaleLinear<T>(axisType: AxisType, data: T[], fieldFunc: (x: T) => number): d3Scale.ScaleLinear<number, number> {
-        var res = d3Scale.scaleLinear()
-            .domain([0, d3Array.max(data, fieldFunc)])
+    public createScaleLinear<T>(axisType: AxisType, data: T[], fieldFunc: (x: T) => number): d3.ScaleLinear<number, number> {
+        var res = d3.scaleLinear()
+            .domain([0, d3.max(data, fieldFunc)])
 
         switch (axisType) {
             case AxisType.X:
@@ -55,9 +56,9 @@ export class ChartCreator {
     /**
  * Create
  */
-    public createScaleBand<T>(axisType: AxisType, data: T[], fieldFunc: (d: T) => string): d3Scale.ScaleBand<string> {
-        var namekeys = d3Collection.set(data, fieldFunc).values()
-        var res = d3Scale.scaleBand()
+    public createScaleBand<T>(axisType: AxisType, data: T[], fieldFunc: (d: T) => string): d3.ScaleBand<string> {
+        var namekeys = d3.set(data, fieldFunc).values()
+        var res = d3.scaleBand()
             .domain(namekeys);
         switch (axisType) {
             case AxisType.X:
@@ -77,8 +78,8 @@ export class ChartCreator {
     /**
      * createAxis
      */
-    public createAxisElement<Domain extends d3Axis.AxisDomain>(
-        axisType: AxisType, axis: d3Axis.Axis<Domain>): d3Selection.Selection<SVGGElement, unknown, HTMLElement, any> {
+    public createAxisElement<Domain extends d3.AxisDomain>(
+        axisType: AxisType, axis: d3.Axis<Domain>): d3.Selection<SVGGElement, unknown, HTMLElement, any> {
 
         var res = this.svg.append('g')
             .call(axis)

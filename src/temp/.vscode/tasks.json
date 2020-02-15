@@ -4,12 +4,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "watchify",
+            "label": "打包监控ts",
             "type": "shell",
-            "command": "watchify",
-            "args": ["js/test.js","-o","js/main.js","-v"],
-            "isBackground": true,
-          
+            "command": "webpack",
+            "args": ["--watch"]
         }
     ]
 }

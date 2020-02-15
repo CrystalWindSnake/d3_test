@@ -1,13 +1,13 @@
 
 import * as d3 from "d3";
-import { Selection } from "d3-selection";
+// import { Selection } from "d3-selection";
 
 export enum Direction {
     H,
     V
 }
 
-type d3TextSelection = Selection<SVGTextElement, any, d3.BaseType, unknown>
+type d3TextSelection = d3.Selection<SVGTextElement, any, d3.BaseType, unknown>
 type d3Scale = d3.AxisScale<d3.AxisDomain>
 
 declare module "d3-selection" {
@@ -24,7 +24,7 @@ declare module "d3-selection" {
 
 
 d3.selection.prototype.exCalCenterBar = function (
-    this: Selection<HTMLElement, any, null, undefined>,
+    this: d3.Selection<HTMLElement, any, null, undefined>,
     name: string,
     scale: d3Scale,
     barWidth: number, valueFunc: (d) => string) {
@@ -37,7 +37,7 @@ d3.selection.prototype.exCalCenterBar = function (
 
 
 d3.selection.prototype.exSetTranslate = function (
-    this: Selection<HTMLElement, any, null, undefined>,
+    this: d3.Selection<HTMLElement, any, null, undefined>,
     x: number, y: number) {
 
     this.attr('transform', `translate(${x},${y})`)

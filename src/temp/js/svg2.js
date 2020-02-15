@@ -1,1 +1,0 @@
-//# sourceMappingURL=svg2.js.map
