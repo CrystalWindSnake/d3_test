@@ -18,12 +18,12 @@ declare module "d3-selection" {
 
         exSetTranslate(x: number, y: number): this
 
-        exCalCenterBar(name: string, scale: d3Scale, barWidth: number, valueFunc: (d: Datum) => string): this
+        exSetCenterBar(name: string, scale: d3Scale, barWidth: number, valueFunc: (d: Datum) => string): this
     }
 }
 
 
-d3.selection.prototype.exCalCenterBar = function (
+d3.selection.prototype.exSetCenterBar = function (
     this: d3.Selection<HTMLElement, any, null, undefined>,
     name: string,
     scale: d3Scale,

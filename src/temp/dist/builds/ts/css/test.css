@@ -1,12 +1,15 @@
-div.chart{
-    border-style: double;
-    border-width: 5px; 
 
+
+/* body{
+    width:1060px;
+    margin:50px auto;
+} */
+
+div.chart{
+    border: double;
 }
 
-div.chart svg{
-    padding : 25px;
-    width:100%;
-    display: block;
-
+svg{
+    /* width: 100%;
+    display: inline-block; */
 }

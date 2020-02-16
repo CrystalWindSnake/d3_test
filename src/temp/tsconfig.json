@@ -1,6 +1,7 @@
 {
-  "include":["src/main.ts"],
+  "include":["src/ts/main.ts"],
   "compilerOptions": {
+    "sourceMap": true,
     "outDir": "builds/ts", 
 
     /* Basic Options */

@@ -19,7 +19,7 @@ export abstract class Chart {
     /**
      *
      */
-    constructor(svgSelector: string, height: number, width: number) {
+    constructor(svgSelector: string,width: number, height: number) {
         this.svgSelector = svgSelector
         this.height = height
         this.width = width
