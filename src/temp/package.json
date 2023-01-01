@@ -7,7 +7,7 @@
   "devDependencies": {
     "@types/d3": "^5.7.2",
     "d3": "^5.15.0",
-    "ts-loader": "^6.2.1",
+    "ts-loader": "^9.4.2",
     "typescript": "^3.7.5"
   },
   "scripts": {
